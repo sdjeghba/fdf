@@ -44,9 +44,9 @@ int       main()
 int			main(int ac, char **av)
 {
 	(void)ac;
-//	if (ac != 2)
-//		ft_putendl("usage: ./fdf imputfile");
-//	else
+	if (ac != 2)
+		ft_putendl("usage: ./fdf imputfile");
+	else
 		fdf(av);
 	return (0);
 }

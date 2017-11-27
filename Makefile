@@ -5,7 +5,6 @@ SRC		= srcs/main.c			\
 		  srcs/tools.c			\
 		  srcs/create_img.c		\
 		  srcs/get_map.c		\
-		  srcs/view.c
 
 OBJ		= $(patsubst src/%.c,obj/%.o,$(SRC))
 .SILENT:

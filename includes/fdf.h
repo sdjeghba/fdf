@@ -22,8 +22,6 @@
 
 typedef struct		s_point
 {
-	int				isox;
-	int				isoy;
 	int				x;
 	int				y;
 	int				x1;
@@ -31,14 +29,6 @@ typedef struct		s_point
 	int				x2;
 	int				y2;
 }					t_point;
-
-typedef struct		s_vec
-{
-	int				start_x;
-	int				stop_x;
-	int				start_y;
-	int				stop_y;
-}					t_vec;
 
 typedef struct		s_algo
 {
@@ -63,7 +53,6 @@ typedef struct		s_img
 	int				spw_btw_pts;
 	int				sph_btw_pts;
 	t_algo			*bres;
-	t_vec			vec;
 	t_point			p;
 }					t_img;
 
@@ -80,6 +69,8 @@ typedef struct		s_data
 
 int			fdf(char **av);
 
+
+
 /*
 ** get_map.c
 */
@@ -88,7 +79,7 @@ int			get_map(char **av, t_list **map, t_data *data);
 int			fill_coor(t_list *map, t_data *data);
 int			check_map(char *str);
 int			fill_intab(char **tab, t_data *data, int y);
-int			ck_format(t_data *data);
+int			loop_tabatoi(t_list *tmp, t_data * data, int y);
 
 /*
 ** create_image.c

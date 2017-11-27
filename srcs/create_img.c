@@ -24,7 +24,6 @@ int			get_img_size(t_data *data, t_img *img)
 		img->iwidth = 900 ;
 		img->iheight = 900;
 	}
-
 	return (0);
 }
 
@@ -34,9 +33,9 @@ int			draw_v(t_img *img, t_data *data)
 
 	img->p.x--;
 	img->p.x1 = (img->p.x - img->p.y) * (img->spw_btw_pts / 2);
-	img->p.y1 = ((img->p.x + img->p.y) * (img->sph_btw_pts / 2)) - ((data->tab[img->p.y][img->p.x] * (img->sph_btw_pts / 4)) / 2);
+	img->p.y1 = ((img->p.x + img->p.y) * (img->sph_btw_pts / 2)) - ((data->tab[img->p.y][img->p.x] * (img->sph_btw_pts * 1 / 10)) / 2);
 	img->p.x2 = (img->p.x - line) * (img->spw_btw_pts / 2);
-	img->p.y2 = ((img->p.x + line) * (img->sph_btw_pts / 2)) - ((data->tab[line][img->p.x] * (img->sph_btw_pts / 4)) / 2);
+	img->p.y2 = ((img->p.x + line) * (img->sph_btw_pts / 2)) - ((data->tab[line][img->p.x] * (img->sph_btw_pts * 1 / 10)) / 2);
 	img->p.x++;
 	bresenham(img);
 	return (0);
@@ -45,10 +44,10 @@ int			draw_v(t_img *img, t_data *data)
 int			draw_h(t_img *img, t_data *data)
 {
 	img->p.x1 = (img->p.x - img->p.y) * (img->spw_btw_pts / 2);
-	img->p.y1 = ((img->p.x + img->p.y) * (img->sph_btw_pts / 2)) - ((data->tab[img->p.y][img->p.x] * (img->sph_btw_pts / 4)) / 2);
+	img->p.y1 = ((img->p.x + img->p.y) * (img->sph_btw_pts / 2)) - ((data->tab[img->p.y][img->p.x] * (img->sph_btw_pts * 1 / 10)) / 2);
 	img->p.x++;
 	img->p.x2 = (img->p.x - img->p.y) * (img->spw_btw_pts / 2);
-	img->p.y2 = ((img->p.x + img->p.y) * (img->sph_btw_pts / 2)) - ((data->tab[img->p.y][img->p.x] * (img->sph_btw_pts / 4)) / 2);
+	img->p.y2 = ((img->p.x + img->p.y) * (img->sph_btw_pts / 2)) - ((data->tab[img->p.y][img->p.x] * (img->sph_btw_pts * 1 / 10)) / 2);
 	bresenham(img);
 	return (0);
 }
@@ -109,8 +108,6 @@ int			create_img(t_data *data, t_img *img)
 	img->spw_btw_pts = ((img->iwidth - data->tab_width) / data->tab_width) / 2;
 	img->sph_btw_pts = ((img->iheight - data->tab_height) / data->tab_height) / 2;
 	put_points_img(img, data);
-//	draw_lines(img, data);
-//	iso_view(img, data);
 	return (0);
 }
 
