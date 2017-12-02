@@ -6,7 +6,7 @@
 /*   By: sdjeghba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/21 11:11:57 by sdjeghba          #+#    #+#             */
-/*   Updated: 2017/11/23 13:26:02 by sdjeghba         ###   ########.fr       */
+/*   Updated: 2017/11/27 16:49:33 by sdjeghba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include "../minilibx_macos/mlx.h"
 # include <math.h>
 # include <fcntl.h>
-# define EOL  -42
 # define ESC 53
 
 typedef struct		s_point
@@ -42,8 +41,6 @@ typedef struct		s_algo
 
 typedef struct		s_img
 {
-	int				iwidth;
-	int				iheight;
 	int				*img;
 	int				bpp;
 	int				size_line;
@@ -52,52 +49,49 @@ typedef struct		s_img
 	int				i;
 	int				spw_btw_pts;
 	int				sph_btw_pts;
-	t_algo			*bres;
+	t_algo			bres;
 	t_point			p;
 }					t_img;
 
 typedef struct		s_data
 {
-	int				win_width;
-	int				win_height;
-	int				tab_width;
-	int				tab_height;
+	int				win_w;
+	int				win_h;
+	int				tab_w;
+	int				tab_h;
 	void			*mlx;
 	void			*win;
 	int				**tab;
 }					t_data;
 
-int			fdf(char **av);
-
-
+int					fdf(char **av);
 
 /*
 ** get_map.c
 */
 
-int			get_map(char **av, t_list **map, t_data *data);
-int			fill_coor(t_list *map, t_data *data);
-int			check_map(char *str);
-int			fill_intab(char **tab, t_data *data, int y);
-int			loop_tabatoi(t_list *tmp, t_data * data, int y);
+int					get_map(char **av, t_list **map, t_data *data);
+int					fill_coor(t_list *map, t_data *data);
+int					check_map(char *str);
+int					fill_intab(char **tab, t_data *data, int y);
+int					loop_tabatoi(t_list *tmp, t_data *data, int y);
 
 /*
-** create_image.c
+** fdf.c
 */
 
-int			bresenham(t_img *img);
-int			create_img(t_data *data, t_img *img);
+int					draw_v(t_img *img, t_data *data);
+int					draw_h(t_img *img, t_data *data);
+int					bresenham(t_img *img, t_data *data);
+int					create_img(t_data *data, t_img *img);
+int					fdf(char **av);
 
 /*
 ** tools.c
 */
 
-void		set_pixel(int x, int y, t_img *img);
-int			display_error(char *str);
+int					key_hook(int keycode, t_data *e);
+void				set_pixel(int x, int y, t_img *img);
+int					display_error(char *str);
 
-/*
-** view.c
-*/
-
-int			iso_view(t_img *img, t_data *data);
 #endif

@@ -3,7 +3,6 @@ NAME	= fdf
 SRC		= srcs/main.c			\
 		  srcs/fdf.c			\
 		  srcs/tools.c			\
-		  srcs/create_img.c		\
 		  srcs/get_map.c		\
 
 OBJ		= $(patsubst src/%.c,obj/%.o,$(SRC))
