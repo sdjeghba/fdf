@@ -6,7 +6,7 @@
 /*   By: sdjeghba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 11:44:48 by sdjeghba          #+#    #+#             */
-/*   Updated: 2017/11/30 16:19:36 by sdjeghba         ###   ########.fr       */
+/*   Updated: 2017/12/02 19:03:17 by sdjeghba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int			key_hook(int keycode, t_data *e)
 	(void)e;
 	if (keycode == ESC)
 		exit(0);
-	ft_putendl(ft_itoa(keycode));
 	return (0);
 }
 

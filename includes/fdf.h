@@ -6,7 +6,7 @@
 /*   By: sdjeghba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/21 11:11:57 by sdjeghba          #+#    #+#             */
-/*   Updated: 2017/11/27 16:49:33 by sdjeghba         ###   ########.fr       */
+/*   Updated: 2017/12/02 15:36:25 by sdjeghba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ typedef struct		s_img
 	int				i;
 	int				spw_btw_pts;
 	int				sph_btw_pts;
-	t_algo			bres;
+	t_algo			a;
 	t_point			p;
 }					t_img;
 

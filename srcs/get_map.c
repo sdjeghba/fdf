@@ -6,7 +6,7 @@
 /*   By: sdjeghba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/19 08:17:09 by sdjeghba          #+#    #+#             */
-/*   Updated: 2017/11/27 17:47:10 by sdjeghba         ###   ########.fr       */
+/*   Updated: 2017/12/02 19:01:57 by sdjeghba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ int			loop_tabatoi(t_list *tmp, t_data *data, int y)
 		return (-1);
 	fill_intab(array, data, y);
 	ft_free_tab(array);
+	free(array);
 	return (0);
 }
 

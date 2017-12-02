@@ -6,7 +6,7 @@
 /*   By: sdjeghba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 11:44:55 by sdjeghba          #+#    #+#             */
-/*   Updated: 2017/11/30 16:28:56 by sdjeghba         ###   ########.fr       */
+/*   Updated: 2017/12/02 19:08:12 by sdjeghba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,11 @@ int			draw_h(t_img *img, t_data *data)
 
 int			bresenham(t_img *img, t_data *data)
 {
-	img->bres.dx = abs(img->p.x2 - img->p.x1);
-	img->bres.dy = abs(img->p.y2 - img->p.y1);
-	img->bres.sx = img->p.x1 < img->p.x2 ? 1 : -1;
-	img->bres.sy = img->p.y1 < img->p.y2 ? 1 : -1;
-	img->bres.err = (img->bres.dx > img->bres.dy ?\
-			img->bres.dx : -img->bres.dy) / 2;
+	img->a.dx = abs(img->p.x2 - img->p.x1);
+	img->a.dy = abs(img->p.y2 - img->p.y1);
+	img->a.sx = img->p.x1 < img->p.x2 ? 1 : -1;
+	img->a.sy = img->p.y1 < img->p.y2 ? 1 : -1;
+	img->a.err = (img->a.dx > img->a.dy ? img->a.dx : -img->a.dy) / 2;
 	while (42)
 	{
 		if ((img->p.x1 > 1) && (img->p.x1 < data->win_w) && (img->p.y1 > 1)\
@@ -57,16 +56,16 @@ int			bresenham(t_img *img, t_data *data)
 			set_pixel(img->p.x1, img->p.y1, img);
 		if (img->p.x1 == img->p.x2 && img->p.y1 == img->p.y2)
 			break ;
-		img->bres.e = img->bres.err;
-		if (img->bres.e > -img->bres.dx)
+		img->a.e = img->a.err;
+		if (img->a.e > -img->a.dx)
 		{
-			img->bres.err -= img->bres.dy;
-			img->p.x1 += img->bres.sx;
+			img->a.err -= img->a.dy;
+			img->p.x1 += img->a.sx;
 		}
-		if (img->bres.e < img->bres.dy)
+		if (img->a.e < img->a.dy)
 		{
-			img->bres.err += img->bres.dx;
-			img->p.y1 += img->bres.sy;
+			img->a.err += img->a.dx;
+			img->p.y1 += img->a.sy;
 		}
 	}
 	return (0);
@@ -100,30 +99,36 @@ int			create_img(t_data *data, t_img *img)
 	return (0);
 }
 
-void		free_map(t_list **list)
+/*void		free_map(t_list **list)
 {
 	t_list	*tmp;
-	t_list	*tnext;
 
-	tmp = *list;
-	while (tmp->next)
+	tmp = NULL;
+	while (*list)
 	{
-		tnext = tmp->next;
-		ft_memdel((void**)&tmp->content);
-		free(tmp);
-		tmp = tmp->next;
+		tmp = (*list)->next;
+	//	ft_putendl((*list)->content);
+		ft_memdel((void**)&(*list)->content);
+		(*list)->content_size = 0;
+		free(*list);
+		*list = tmp;
 	}
-}
+	*list = NULL;
+}*/
 
-void		free_tabint(int	**tab)
+/*void		free_tabint(t_data data)
 {
 	int		i;
 
 	i = 0;
-	while (tab[i])
-		ft_memdel((void**)&tab[i++]);
-	free(tab);
-}
+	while (i < data.tab_h)
+	{
+		ft_putendl("free tab");
+		ft_memdel((void**)&data.tab[i++]);
+	}
+	data.tab = NULL;
+	free(data.tab);
+}*/
 
 int			fdf(char **av)
 {
@@ -132,16 +137,14 @@ int			fdf(char **av)
 	t_img	img;
 
 	map = NULL;
-	data.win_w = 1490;
-	data.win_h = 900;
+	data.win_w = 2000;
+	data.win_h = 1200;
 	get_map(av, &map, &data);
 	data.mlx = mlx_init();
 	create_img(&data, &img);
-//	free_map(&map);
 	data.win = mlx_new_window(data.mlx, data.win_w, data.win_h, "42");
 	mlx_key_hook(data.win, key_hook, &data);
 	mlx_put_image_to_window(data.mlx, data.win, img.img, 0, 0);
-//	free_tabint(data.tab);
 	mlx_loop(data.mlx);
 	return (0);
 }

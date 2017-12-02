@@ -12,7 +12,7 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	make -C libft/
-	gcc -Wall -Wextra -Werror -L libft/ -lft -g -L./minilibx_macos -lmlx -framework OpenGL -framework AppKit $(SRC) -o $(NAME)
+	gcc -g -Wall -Wextra -Werror -L libft/ -lft -g -L./minilibx_macos -lmlx -framework OpenGL -framework AppKit $(SRC) -o $(NAME)
 	printf '\033[32m[ ✔ ] %s\n\033[0m' "Create FdF"
 
 obj/%.o: src/%.c
