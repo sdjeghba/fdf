@@ -6,7 +6,7 @@
 /*   By: sdjeghba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/21 11:11:57 by sdjeghba          #+#    #+#             */
-/*   Updated: 2017/12/02 15:36:25 by sdjeghba         ###   ########.fr       */
+/*   Updated: 2017/12/03 13:12:20 by sdjeghba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 # include <math.h>
 # include <fcntl.h>
 # define ESC 53
+# define WIN_W 2000
+# define WIN_H 1200
 
 typedef struct		s_point
 {
@@ -41,22 +43,23 @@ typedef struct		s_algo
 
 typedef struct		s_img
 {
+	int				zoomx;
+	int				zoomy;
 	int				*img;
 	int				bpp;
 	int				size_line;
 	int				endian;
 	char			*pixel;
 	int				i;
-	int				spw_btw_pts;
-	int				sph_btw_pts;
 	t_algo			a;
 	t_point			p;
 }					t_img;
 
 typedef struct		s_data
 {
-	int				win_w;
-	int				win_h;
+	int				side;
+	int				updown;
+	int				zoom;
 	int				tab_w;
 	int				tab_h;
 	void			*mlx;
@@ -80,18 +83,18 @@ int					loop_tabatoi(t_list *tmp, t_data *data, int y);
 ** fdf.c
 */
 
-int					draw_v(t_img *img, t_data *data);
-int					draw_h(t_img *img, t_data *data);
 int					bresenham(t_img *img, t_data *data);
-int					create_img(t_data *data, t_img *img);
+int					create_img(t_data *data);
 int					fdf(char **av);
 
 /*
 ** tools.c
 */
 
+int					draw_v(t_img *img, t_data *data);
+int					draw_h(t_img *img, t_data *data);
 int					key_hook(int keycode, t_data *e);
-void				set_pixel(int x, int y, t_img *img);
+void				set_pixel(int x, int y, t_img *img, t_data *data);
 int					display_error(char *str);
 
 #endif
