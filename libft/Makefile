@@ -6,7 +6,7 @@
 #    By: sdjeghba <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/29 11:32:22 by sdjeghba          #+#    #+#              #
-#    Updated: 2017/11/16 12:00:11 by sdjeghba         ###   ########.fr        #
+#    Updated: 2017/12/30 06:08:02 by sdjeghba         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -83,12 +83,14 @@ SRCS =	ft_isprint.c		\
 		ft_lstsortrev.c 	\
 		ft_display_list.c 	\
 		ft_place_between_str.c	\
-		ft_putendsp.c		\
 		ft_display_tab.c	\
 		ft_get_tab_height.c	\
 		ft_copy_tab.c		\
 		ft_free_tab.c		\
+		ft_strrealloc.c		\
 		ft_count_word.c		\
+		ft_putdblstr.c		\
+		ft_putendblstr.c	\
 		get_next_line.c
 
 OBJ = $(SRCS:.c=.o)

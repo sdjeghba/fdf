@@ -6,7 +6,7 @@
 /*   By: sdjeghba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/21 11:11:57 by sdjeghba          #+#    #+#             */
-/*   Updated: 2017/12/05 15:35:38 by sdjeghba         ###   ########.fr       */
+/*   Updated: 2017/12/30 06:11:40 by sdjeghba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define FDF_H
 
 # include "../libft/includes/libft.h"
-# include "../minilibx_macos/mlx.h"
+# include "/usr/local/include/mlx.h"
 # include <math.h>
 # include <fcntl.h>
 # define ESC 53

@@ -6,7 +6,7 @@
 /*   By: sdjeghba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/29 11:32:38 by sdjeghba          #+#    #+#             */
-/*   Updated: 2017/11/16 12:08:25 by sdjeghba         ###   ########.fr       */
+/*   Updated: 2017/12/30 06:06:42 by sdjeghba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,11 +117,14 @@ int					ft_power(int nb, int power);
 int					ft_islower(int c);
 int					ft_isupper(int c);
 char				*ft_place_between_str(char *s1, char *s2, char *c);
-void				ft_putendsp(char *str);
 void				ft_display_tab(char **tab);
 int					ft_get_tab_height(char **tab);
 char				**ft_copy_tab(char **tab);
-int					get_next_line(int fd, char **line);
 void				ft_free_tab(char **tab);
+char				*ft_strrealloc(char *str, int size);
+int					get_next_line(int fd, char **line);
 int					ft_count_word(char *s, char c);
+void				ft_putdblstr(char *s1, char *s2);
+void				ft_putendblstr(char *s1, char *s2);
+
 #endif

@@ -1,19 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putendsp.c                                      :+:      :+:    :+:   */
+/*   ft_strrealloc.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: salemdjeghbala <marvin@42.fr>              +#+  +:+       +#+        */
+/*   By: sdjeghba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/24 18:40:32 by salemdje          #+#    #+#             */
-/*   Updated: 2017/05/24 18:44:27 by salemdje         ###   ########.fr       */
+/*   Created: 2017/12/26 14:38:46 by sdjeghba          #+#    #+#             */
+/*   Updated: 2017/12/26 14:38:48 by sdjeghba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./includes/libft.h"
+#include "includes/libft.h"
 
-void		ft_putendsp(char *str)
+char	*ft_strrealloc(char *str, int size)
 {
-	ft_putstr(str);
-	ft_putchar(' ');
+	char *s;
+
+	if (!str)
+	{
+		s = ft_strnew(size);
+		return (s);
+	}
+	s = ft_strnew(ft_strlen(str) + size);
+	ft_strcpy(s, str);
+	ft_strdel(&str);
+	return (s);
 }

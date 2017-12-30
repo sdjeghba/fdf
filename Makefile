@@ -1,36 +1,48 @@
-NAME	= fdf
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: sdjeghba <marvin@42.fr>                    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2017/09/13 13:30:08 by sdjeghba          #+#    #+#              #
+#    Updated: 2017/12/30 05:33:08 by sdjeghba         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
-SRC		= srcs/main.c			\
-		  srcs/fdf.c			\
-		  srcs/tools.c			\
-		  srcs/get_map.c		\
+NAME		=	fdf
+INC			=	-I./includes
+CC			=	gcc
+CFLAGS		=	-Wall -Werror -Wextra
+LIB			=	./libft/libft.a
+P_LIB		=	./libft/
+P_SRC		=	./srcs/
+MLXFLAGS	=	-L/usr/local/lib/ -lmlx -framework OpenGL -framework Appkit
 
-OBJ		= $(patsubst src/%.c,obj/%.o,$(SRC))
-.SILENT:
+SRCS		=	$(P_SRC)main.c				\
+				$(P_SRC)fdf.c				\
+				$(P_SRC)tools.c				\
+				$(P_SRC)get_map.c
 
-all: $(NAME)
+OBJS		=	$(SRCS:.c=.o)
 
-$(NAME): $(OBJ)
-	make -C libft/
-	gcc -g -Wall -Wextra -Werror -L libft/ -lft -g -L./minilibx_macos -lmlx -framework OpenGL -framework AppKit $(SRC) -o $(NAME)
-	printf '\033[32m[ ✔ ] %s\n\033[0m' "Create FdF"
+all:			$(NAME)
 
-obj/%.o: src/%.c
-	mkdir -p obj
-	gcc -Wall -Wextra -Werror -c $< -o $@
-	printf '\033[0m[ ✔ ] %s\n\033[0m' "$<"
+$(NAME):		$(OBJS)
+				make -C $(P_LIB)
+				$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(INC) $(MLXFLAGS) $(LIB)
+
+%.o:			%.c
+				$(CC) $(CFLAGS) -c $< -o $@
+
+RM			=	rm -rf
 
 clean:
-	rm -rf obj/
-	make -C libft/ clean
-	printf '\033[31m[ ✔ ] %s\n\033[0m' "Clean Libprintf"
+				make -C $(P_LIB) clean
+				$(RM) $(OBJS)
 
-fclean: clean
-	rm -f $(NAME)
-	make -C libft/ fclean
-	printf '\033[31m[ ✔ ] %s\n\033[0m' "Fclean Libprintf"
+fclean:			clean
+				make -C $(P_LIB) fclean
+				$(RM) $(NAME)
 
-re: fclean all
-
-all: $(NAME)
-.PHONY: clean fclean re all
+re:				fclean all

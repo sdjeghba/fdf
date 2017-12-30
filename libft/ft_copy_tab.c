@@ -25,6 +25,8 @@ char		**ft_copy_tab(char **tab)
 		return (NULL);
 	while (tab[i])
 	{
+		if (!tab[i])
+			i++;
 		array[j] = ft_strdup(tab[i]);
 		i++;
 		j++;
